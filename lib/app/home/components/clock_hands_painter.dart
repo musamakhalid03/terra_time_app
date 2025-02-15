@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:terra_time_app/utils/app_constant/app_colors.dart';
 
 class ClockHandsPainter extends CustomPainter {
@@ -13,43 +14,40 @@ class ClockHandsPainter extends CustomPainter {
 
     final paintHourHand = Paint()
       ..color = AppColors.black
-      ..strokeWidth = 4
+      ..strokeWidth = 4.w 
       ..strokeCap = StrokeCap.round;
 
     final paintMinuteHand = Paint()
       ..color = AppColors.mediumLight
-      ..strokeWidth = 3
+      ..strokeWidth = 3.w 
       ..strokeCap = StrokeCap.round;
 
     final paintSecondHand = Paint()
       ..color = AppColors.deepPink
-      ..strokeWidth = 2
+      ..strokeWidth = 2.w 
       ..strokeCap = StrokeCap.round;
 
     double hourAngle = ((time.hour % 12) + (time.minute / 60)) * 30 * pi / 180;
     double minuteAngle = (time.minute + (time.second / 60)) * 6 * pi / 180;
     double secondAngle = (time.second * 6) * pi / 180;
 
-    final hourHandLength = radius * 0.4;
-    final minuteHandLength = radius * 0.55;
-    final secondHandLength = radius * 0.65;
+    final hourHandLength = radius * 0.4.h; 
+    final minuteHandLength = radius * 0.55.h; 
+    final secondHandLength = radius * 0.65.h; 
 
     final hourHandEnd = center +
-        Offset(
-            hourHandLength * sin(hourAngle), -hourHandLength * cos(hourAngle));
+        Offset(hourHandLength * sin(hourAngle), -hourHandLength * cos(hourAngle));
     final minuteHandEnd = center +
-        Offset(minuteHandLength * sin(minuteAngle),
-            -minuteHandLength * cos(minuteAngle));
+        Offset(minuteHandLength * sin(minuteAngle), -minuteHandLength * cos(minuteAngle));
     final secondHandEnd = center +
-        Offset(secondHandLength * sin(secondAngle),
-            -secondHandLength * cos(secondAngle));
+        Offset(secondHandLength * sin(secondAngle), -secondHandLength * cos(secondAngle));
 
     canvas.drawLine(center, hourHandEnd, paintHourHand);
     canvas.drawLine(center, minuteHandEnd, paintMinuteHand);
     canvas.drawLine(center, secondHandEnd, paintSecondHand);
 
     final paintCenter = Paint()..color = AppColors.deepPink;
-    canvas.drawCircle(center, 4, paintCenter);
+    canvas.drawCircle(center, 4.r, paintCenter); 
   }
 
   @override

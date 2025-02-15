@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:terra_time_app/app/setting/components/setting_buttton.dart';
@@ -14,57 +15,63 @@ class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => SettingsProvider(),
-        child: Consumer<SettingsProvider>(
-            builder: (context, settingsProvider, child) {
+      create: (context) => SettingsController(),
+      child: Consumer<SettingsController>(
+        builder: (context, settingsProvider, child) {
           return Scaffold(
             backgroundColor: AppColors.ghostWhite,
             appBar: AppBar(
               backgroundColor: AppColors.ghostWhite,
               automaticallyImplyLeading: false,
               title: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w), 
                 child: AppText(
                   title: StringText.setting,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                children: [
-                  Gap(30),
-                  SettingButton(
-                    title: StringText.notifications,
-                    showSwitch: true,
-                    value: settingsProvider.isnotificationSwitched,
-                    onChanged: settingsProvider.notificationtoggleSwitch,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32.w), 
+                  child: Column(
+                    children: [
+                      Gap(30.h), 
+                      SettingButton(
+                        title: StringText.notifications,
+                        showSwitch: true,
+                        value: settingsProvider.isnotificationSwitched,
+                        onChanged: settingsProvider.notificationtoggleSwitch,
+                      ),
+                      Gap(10.h), 
+                      SettingButton(
+                        title: StringText.hourTime,
+                        showSwitch: true,
+                        value: settingsProvider.ishourTimeSwitched,
+                        onChanged: settingsProvider.hourTimetoggleSwitch,
+                      ),
+                      Gap(10.h), 
+                      SettingButton(
+                        title: StringText.shareApp,
+                      ),
+                      Gap(10.h),
+                      SettingButton(
+                        title: StringText.privacyPolicy,
+                      ),
+                      Gap(116.h), 
+                      UpgradePremiumCard(
+                        upGradeButtononTap: () {},
+                      ),
+                    ],
                   ),
-                  Gap(10),
-                  SettingButton(
-                    title: StringText.hourTime,
-                    showSwitch: true,
-                    value: settingsProvider.ishourTimeSwitched,
-                    onChanged: settingsProvider.hourTimetoggleSwitch,
-                  ),
-                  Gap(10),
-                  SettingButton(
-                    title: StringText.shareApp,
-                  ),
-                  Gap(10),
-                  SettingButton(
-                    title: StringText.privacyPolicy,
-                  ),
-                  Gap(116),
-                  UpgradePremiumCard(
-                    upGradeButtononTap: () {},
-                  ),
-                ],
+                ),
               ),
             ),
           );
-        }));
+        },
+      ),
+    );
   }
 }

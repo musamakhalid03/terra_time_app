@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import ScreenUtil
 import 'package:provider/provider.dart';
 import 'package:terra_time_app/app/home/components/clock_hands_painter.dart';
 import 'package:terra_time_app/app/home/home_controller.dart';
@@ -16,10 +17,14 @@ class ClockWidget extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              SvgPicture.asset(ImageConst.clockBackGround,
-                  fit: BoxFit.scaleDown, width: 264, height: 264),
+              SvgPicture.asset(
+                ImageConst.clockBackGround,
+                fit: BoxFit.scaleDown,
+                width: 264.w, 
+                height: 264.h,
+              ),
               CustomPaint(
-                size: const Size(300, 300),
+                size: Size(300.w, 300.h),
                 painter: ClockHandsPainter(homeController.currentTime),
               ),
             ],

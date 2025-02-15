@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:terra_time_app/utils/app_constant/app_colors.dart';
@@ -13,13 +14,16 @@ class SplashLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(ImageConst.splachLogo,
-            height: 126, fit: BoxFit.scaleDown),
-        Gap(6.28),
+        SvgPicture.asset(
+          ImageConst.splachLogo,
+          height: 126.h,
+          fit: BoxFit.scaleDown,
+        ),
+        Gap(6.28.h),
         AppText(
           title: StringText.splashText,
           color: AppColors.black,
-          fontSize: 24,
+          fontSize: 24.sp,
           fontWeight: FontWeight.w600,
           textAlign: TextAlign.center,
         ),

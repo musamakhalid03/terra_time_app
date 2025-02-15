@@ -2,7 +2,9 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:terra_time_app/app/bottom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:terra_time_app/app/clocks/clocks_view.dart';
@@ -41,30 +43,38 @@ class BottomNavBarView extends StatelessWidget {
                   color: AppColors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xFFEFF1F4).withOpacity(0.3),
-                      offset: Offset(0, -4),
-                      blurRadius: 20,
-                      spreadRadius: 0,
+                      color: const Color(0xFFEFF1F4).withOpacity(0.3),
+                      offset: Offset(0, -4.h),
+                      blurRadius: 20.r,
+                      spreadRadius: 0.r,
                     ),
                   ],
                 ),
                 child: BottomAppBar(
                   color: AppColors.white,
-                  shape: CircularNotchedRectangle(),
+                  shape: const CircularNotchedRectangle(),
                   height: Platform.isAndroid
-                      ? 65
-                      : MediaQuery.of(context).size.height * 0.1,
+                      ? 65.h
+                      : MediaQuery.of(context).size.height * 0.1.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      _buildNavigationBarItem(
-                          context, provider, 0, "assets/svg/home.svg", 'Home'),
-                      _buildNavigationBarItem(context, provider, 1,
-                          "assets/svg/clock.svg", 'Clocks'),
-                      _buildNavigationBarItem(context, provider, 2,
-                          "assets/svg/serach.svg", 'Search'),
-                      _buildNavigationBarItem(context, provider, 3,
-                          "assets/svg/setting.svg", 'Settings'),
+                      Expanded(
+                        child: buildNavigationBarItem(
+                            context, provider, 0, "assets/svg/home.svg", 'Home'),
+                      ),
+                      Expanded(
+                        child: buildNavigationBarItem(
+                            context, provider, 1, "assets/svg/clock.svg", 'Clocks'),
+                      ),
+                      Expanded(
+                        child: buildNavigationBarItem(
+                            context, provider, 2, "assets/svg/serach.svg", 'Search'),
+                      ),
+                      Expanded(
+                        child: buildNavigationBarItem(
+                            context, provider, 3, "assets/svg/setting.svg", 'Settings'),
+                      ),
                     ],
                   ),
                 ),
@@ -76,7 +86,7 @@ class BottomNavBarView extends StatelessWidget {
     );
   }
 
-  Widget _buildNavigationBarItem(BuildContext context, MainController provider,
+  Widget buildNavigationBarItem(BuildContext context, MainController provider,
       int index, String activeIcon, String label) {
     return GestureDetector(
       onTap: () {
@@ -86,21 +96,28 @@ class BottomNavBarView extends StatelessWidget {
         color: AppColors.white,
         child: Center(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 activeIcon,
+                width: 24.w,
+                height: 24.h,
                 color: provider.bottomIndex == index
                     ? AppColors.deepPink
                     : AppColors.mediumGray,
               ),
-              AppText(
-                title: label,
-                color: provider.bottomIndex == index
-                    ? AppColors.deepPink
-                    : AppColors.mediumGray,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+              Gap(4.h),
+              Flexible( 
+                child: AppText(
+                  title: label,
+                  color: provider.bottomIndex == index
+                      ? AppColors.deepPink
+                      : AppColors.mediumGray,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),

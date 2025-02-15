@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:terra_time_app/app/clocks/clocks_controller.dart';
@@ -23,10 +24,10 @@ class ClocksView extends StatelessWidget {
               backgroundColor: AppColors.ghostWhite,
               automaticallyImplyLeading: false,
               title: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20.w), 
                 child: AppText(
                   title: StringText.clocks,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -34,16 +35,16 @@ class ClocksView extends StatelessWidget {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.symmetric(horizontal: 30.w), 
                   child: Column(
                     children: [
                       IconInputField(
                         hint: StringText.searchCities,
                       ),
-                      Gap(26),
+                      Gap(26.h), 
                       ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: clockController.cities.length,
                         itemBuilder: (context, index) {
                           final city = clockController.cities[index];

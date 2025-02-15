@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class SettingsProvider extends ChangeNotifier {
-  bool _isnotificationSwitched = false;
-  bool _hourTimeisSwitched = false;
+class SettingsController extends ChangeNotifier {
+  bool isnotificationsSwitched = false;
+  bool hourTimeisSwitched = false;
 
-  bool get isnotificationSwitched =>_isnotificationSwitched;
+  bool get isnotificationSwitched => isnotificationsSwitched;
 
-  bool get ishourTimeSwitched =>_hourTimeisSwitched;
+  bool get ishourTimeSwitched => hourTimeisSwitched;
 
   void notificationtoggleSwitch(bool? value) {
-    _isnotificationSwitched = value ?? false;
+    isnotificationsSwitched = value ?? false;
     notifyListeners();
   }
 
   void hourTimetoggleSwitch(bool? value) {
-    _hourTimeisSwitched = value ?? false;
+    hourTimeisSwitched = value ?? false;
     notifyListeners();
   }
 }
