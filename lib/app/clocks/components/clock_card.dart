@@ -19,7 +19,7 @@ class ClockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w), 
+      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -35,50 +35,55 @@ class ClockCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText(
-                title: city!["name"].toString(),
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-              ),
-              AppText(
-                title: "${city!["timezoneOffset"].toString()}HRS | GMT",
-                fontSize: 12.sp,
-                color: AppColors.lightBlueColor,
-                fontWeight: FontWeight.w400,
-              ),
-              Gap(25.h), 
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    ImageConst.stormClouds,
-                    width: 20.w,
-                    height: 20.h, 
-                  ),
-                  Gap(6.w),
-                  AppText(
-                    title: city!["weather"].toString(),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.lightBlueColor,
-                  ),
-                ],
-              ),
-              AppText(
-                title: city!["temperature"].toString(),
-                fontSize: 28.sp,
-                fontWeight: FontWeight.w400,
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppText(
+                  title: city!["name"].toString(),
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                AppText(
+                  title: "${city!["timezoneOffset"].toString()}HRS | GMT",
+                  fontSize: 12.sp,
+                  color: AppColors.lightBlueColor,
+                  fontWeight: FontWeight.w400,
+                ),
+                Gap(25.h),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      ImageConst.stormClouds,
+                      width: 20.w,
+                      height: 20.h,
+                    ),
+                    Gap(6.w),
+                    Flexible(
+                      child: AppText(
+                        title: city!["weather"].toString(),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.lightBlueColor,
+                        overFlow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                AppText(
+                  title: city!["temperature"].toString(),
+                  fontSize: 28.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+              ],
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               AppText(
                 title: time!,
-                fontSize: 32.sp, 
+                fontSize: 32.sp,
                 fontWeight: FontWeight.w400,
               ),
               Gap(24.h),
@@ -90,7 +95,7 @@ class ClockCard extends StatelessWidget {
               ),
               AppText(
                 title: city!["exchangeRate"].toString(),
-                fontSize: 24.sp, 
+                fontSize: 24.sp,
                 fontWeight: FontWeight.w400,
               ),
             ],

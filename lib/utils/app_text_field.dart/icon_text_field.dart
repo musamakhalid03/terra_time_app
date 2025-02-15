@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:terra_time_app/utils/app_constant/app_colors.dart';
 
@@ -35,16 +36,16 @@ class IconInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width ?? double.infinity,
+      height: height?.h ?? 55.h, 
+      width: width ?? double.infinity, 
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r), 
         boxShadow: [
           BoxShadow(
             color: const Color(0x56D1DCEE),
-            offset: const Offset(0, 8),
-            blurRadius: 12,
+            offset: Offset(0, 8.h), 
+            blurRadius: 12.r, 
           ),
         ],
       ),
@@ -56,34 +57,34 @@ class IconInputField extends StatelessWidget {
         validator: validator,
         onFieldSubmitted: onFieldSubmitted,
         onTap: ontap,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.black,
-          fontSize: 16,
+          fontSize: 16.sp, 
           fontWeight: FontWeight.w400,
         ),
         decoration: InputDecoration(
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w), 
           suffixIcon: hassuffix
               ? Padding(
-                  padding: const EdgeInsets.only(right: 20),
+                  padding: EdgeInsets.only(right: 20.w), 
                   child: SvgPicture.asset(
                     suffixIcon ?? "assets/svg/serach.svg",
-                    width: 20,
-                    height: 20,
+                    width: 20.w,
+                    height: 20.h, 
                     colorFilter:
                         const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                   ),
                 )
               : null,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r), 
             borderSide: BorderSide.none,
           ),
           hintText: hint,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             color: Colors.grey,
-            fontSize: 16,
+            fontSize: 16.sp, 
             fontWeight: FontWeight.w400,
           ),
         ),

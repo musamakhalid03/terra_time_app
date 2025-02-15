@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:terra_time_app/utils/app_constant/app_colors.dart';
 import 'package:terra_time_app/utils/app_text/app_text.dart';
 
@@ -17,6 +18,7 @@ class AppButton extends StatelessWidget {
     this.titleColor,
     this.ontap,
   });
+
   final double? height;
   final double buttonWidth;
   final Color? buttonColor;
@@ -34,21 +36,23 @@ class AppButton extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        height: height,
-        width: MediaQuery.of(context).size.width *buttonWidth,
-        decoration:
-            appBoxDecotration(innerShadow: boxShadow, color: buttonColor),
+        height: height?.h ?? 50.h,
+        width: MediaQuery.of(context).size.width * buttonWidth, 
+        decoration: appBoxDecoration(innerShadow: boxShadow, color: buttonColor),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16.w), 
           child: Row(
             mainAxisAlignment: mainAxisAlignment,
             children: [
               if (prefixWidget != null) prefixWidget!,
-              AppText(
-                title: '$title',
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                color: titleColor ?? AppColors.white,
+              Expanded( 
+                child: AppText(
+                  title: title ?? '',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
+                  color: titleColor ?? AppColors.white,
+                  textAlign: TextAlign.center, 
+                ),
               ),
               if (suffixWidget != null) suffixWidget!,
             ],
@@ -59,9 +63,10 @@ class AppButton extends StatelessWidget {
   }
 }
 
-BoxDecoration appBoxDecotration({List<BoxShadow>? innerShadow, Color? color}) {
+BoxDecoration appBoxDecoration({List<BoxShadow>? innerShadow, Color? color}) {
   return BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
-      boxShadow: innerShadow,
-      color: color);
+    borderRadius: BorderRadius.circular(12.r), 
+    boxShadow: innerShadow,
+    color: color,
+  );
 }

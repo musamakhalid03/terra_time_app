@@ -1,25 +1,28 @@
 // ignore_for_file: use_super_parameters, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppText extends StatelessWidget {
-  AppText(
-      {this.title = "App",
-      this.color = Colors.black,
-      this.decoration = TextDecoration.none,
-      this.style,
-      this.fontSize,
-      this.fontWeight,
-      this.fontFamily,
-      this.textAlign,
-      this.height,
-      this.letterSpacing,
-      this.maxLines,
-      this.wordSpacing,
-      this.overFlow,
-      this.fontStyle,
-      super.key});
+  AppText({
+    this.title = "App",
+    this.color = Colors.black,
+    this.decoration = TextDecoration.none,
+    this.style,
+    this.fontSize,
+    this.fontWeight,
+    this.fontFamily,
+    this.textAlign,
+    this.height,
+    this.letterSpacing,
+    this.maxLines,
+    this.wordSpacing,
+    this.overFlow,
+    this.fontStyle,
+    super.key,
+  });
+
   final Color color;
   final TextStyle? style;
   final TextOverflow? overFlow;
@@ -40,18 +43,19 @@ class AppText extends StatelessWidget {
     return Text(
       title,
       style: GoogleFonts.inter(
-          textStyle: style ??
-              TextStyle(
-                color: color,
-                fontSize: fontSize,
-                height: height ?? 0,
-                fontStyle: fontStyle,
-                fontWeight: fontWeight,
-                decoration: decoration,
-                decorationColor: color,
-                letterSpacing: letterSpacing,
-                wordSpacing: wordSpacing,
-              )),
+        textStyle: style ??
+            TextStyle(
+              color: color,
+              fontSize: fontSize?.sp,
+              height: height?.h,
+              fontStyle: fontStyle,
+              fontWeight: fontWeight,
+              decoration: decoration,
+              decorationColor: color,
+              letterSpacing: letterSpacing?.sp, 
+              wordSpacing: wordSpacing?.sp,
+            ),
+      ),
       overflow: overFlow,
       textAlign: textAlign,
       maxLines: maxLines,

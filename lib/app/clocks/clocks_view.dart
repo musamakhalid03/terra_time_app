@@ -24,7 +24,7 @@ class ClocksView extends StatelessWidget {
               backgroundColor: AppColors.ghostWhite,
               automaticallyImplyLeading: false,
               title: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w), 
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: AppText(
                   title: StringText.clocks,
                   fontSize: 18.sp,
@@ -33,18 +33,16 @@ class ClocksView extends StatelessWidget {
               ),
             ),
             body: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.w), 
-                  child: Column(
-                    children: [
-                      IconInputField(
-                        hint: StringText.searchCities,
-                      ),
-                      Gap(26.h), 
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.w),
+                child: Column(
+                  children: [
+                    IconInputField(
+                      hint: StringText.searchCities,
+                    ),
+                    Gap(26.h),
+                    Expanded(
+                      child: ListView.builder(
                         itemCount: clockController.cities.length,
                         itemBuilder: (context, index) {
                           final city = clockController.cities[index];
@@ -57,9 +55,9 @@ class ClocksView extends StatelessWidget {
                                 .substring(11, 16),
                           );
                         },
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
